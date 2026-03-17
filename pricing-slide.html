@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Phone Receptionist — Pricing</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #F5F4F0;
+    color: #1a1a1a;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 1060px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .header-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 14px;
+  }
+  .header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #111;
+    margin-bottom: 10px;
+  }
+  .header p {
+    font-size: 15px;
+    color: #666;
+    font-weight: 400;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Plans grid */
+  .plans {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .plan {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px 24px 24px;
+    border: 1px solid #e8e6e0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .plan.featured {
+    background: #111;
+    border-color: #111;
+    color: #fff;
+  }
+
+  .rec-badge {
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4ade80;
+    color: #052e16;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .plan-name {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 6px;
+  }
+  .plan.featured .plan-name { color: #666; }
+
+  .plan-tagline {
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+  .plan.featured .plan-tagline { color: #777; }
+
+  .setup-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+  .setup-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #bbb;
+  }
+  .plan.featured .setup-label { color: #666; }
+  .setup-amount {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    font-weight: 500;
+    color: #555;
+  }
+  .plan.featured .setup-amount { color: #aaa; }
+  .setup-note {
+    font-size: 11px;
+    color: #bbb;
+    margin-bottom: 20px;
+  }
+  .plan.featured .setup-note { color: #555; }
+
+  .monthly-price {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #f0ede7;
+  }
+  .plan.featured .monthly-price { border-bottom-color: #2a2a2a; }
+
+  .price-main {
+    display: flex;
+    align-items: flex-start;
+    gap: 2px;
+    line-height: 1;
+  }
+  .currency {
+    font-size: 20px;
+    font-weight: 600;
+    color: #111;
+    margin-top: 8px;
+  }
+  .plan.featured .currency { color: #fff; }
+  .amount {
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #111;
+  }
+  .plan.featured .amount { color: #fff; }
+  .per-mo {
+    font-size: 13px;
+    color: #999;
+    align-self: flex-end;
+    margin-bottom: 8px;
+    margin-left: 2px;
+  }
+  .plan.featured .per-mo { color: #666; }
+
+  .calls-limit {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 6px;
+    font-weight: 500;
+  }
+  .plan.featured .calls-limit { color: #666; }
+
+  /* Features */
+  .features-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #bbb;
+    margin-bottom: 12px;
+  }
+  .plan.featured .features-title { color: #555; }
+
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+  .feature-list li {
+    font-size: 13px;
+    color: #444;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.4;
+  }
+  .plan.featured .feature-list li { color: #ccc; }
+
+  .check {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 9px;
+    margin-top: 1px;
+    background: #f0f0f0;
+    color: #555;
+    font-weight: 700;
+  }
+  .plan.featured .check { background: #2a2a2a; color: #aaa; }
+
+  .plus-note {
+    font-size: 11px;
+    color: #aaa;
+    font-style: italic;
+    margin-top: 2px;
+  }
+  .plan.featured .plus-note { color: #555; }
+
+  /* Client Cost Box */
+  .client-costs {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #e8e6e0;
+    padding: 28px 32px;
+  }
+
+  .cc-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .cc-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #FEF3C7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .cc-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 2px;
+    letter-spacing: -0.01em;
+  }
+  .cc-subtitle {
+    font-size: 12px;
+    color: #888;
+  }
+
+  .cc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .cc-item {
+    background: #F9F8F5;
+    border-radius: 10px;
+    padding: 16px;
+    border: 1px solid #eceae4;
+  }
+
+  .cc-provider {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 4px;
+  }
+
+  .cc-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 4px;
+  }
+
+  .cc-purpose {
+    font-size: 11px;
+    color: #888;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+
+  .cc-price {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: #111;
+    background: #fff;
+    border: 1px solid #e0ddd8;
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+  }
+
+  .cc-footer {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #eceae4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cc-total-label {
+    font-size: 12px;
+    color: #888;
+    font-weight: 500;
+  }
+
+  .cc-total {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    font-weight: 500;
+    color: #111;
+  }
+
+  .cc-note {
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 4px;
+  }
+
+  /* Print / screenshot friendly */
+  @media print {
+    body { background: #fff; padding: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <span class="header-label">AI Phone Receptionist for Restaurants</span>
+    <h1>Simple, transparent pricing</h1>
+    <p>One-time setup + a flat monthly fee. No hidden charges. Infrastructure costs billed directly to you by the provider.</p>
+  </div>
+
+  <!-- Plans -->
+  <div class="plans">
+
+    <!-- Base -->
+    <div class="plan">
+      <div class="plan-name">Base</div>
+      <div class="plan-tagline">Small restaurants & cafes</div>
+
+      <div class="setup-row">
+        <span class="setup-label">Setup</span>
+        <span class="setup-amount">$549</span>
+      </div>
+      <div class="setup-note">one-time · paid before deployment</div>
+
+      <div class="monthly-price">
+        <div class="price-main">
+          <span class="currency">$</span>
+          <span class="amount">119</span>
+          <span class="per-mo">/mo</span>
+        </div>
+        <div class="calls-limit">Up to 300 calls / month</div>
+      </div>
+
+      <div class="features-title">What's included</div>
+      <ul class="feature-list">
+        <li><span class="check">✓</span>AI phone receptionist</li>
+        <li><span class="check">✓</span>Reservation booking system</li>
+        <li><span class="check">✓</span>Table availability check</li>
+        <li><span class="check">✓</span>Cancellation handling</li>
+        <li><span class="check">✓</span>Reservation lookup</li>
+        <li><span class="check">✓</span>Google Sheets database</li>
+        <li><span class="check">✓</span>Basic monitoring & maintenance</li>
+        <li><span class="check">✓</span>Staff notification alerts</li>
+      </ul>
+    </div>
+
+    <!-- Growth (featured) -->
+    <div class="plan featured">
+      <div class="rec-badge">Recommended</div>
+      <div class="plan-name">Growth</div>
+      <div class="plan-tagline">Medium & busy restaurants</div>
+
+      <div class="setup-row">
+        <span class="setup-label">Setup</span>
+        <span class="setup-amount">$749</span>
+      </div>
+      <div class="setup-note">one-time · paid before deployment</div>
+
+      <div class="monthly-price">
+        <div class="price-main">
+          <span class="currency">$</span>
+          <span class="amount">192</span>
+          <span class="per-mo">/mo</span>
+        </div>
+        <div class="calls-limit">Up to 750 calls / month</div>
+      </div>
+
+      <div class="features-title">What's included</div>
+      <ul class="feature-list">
+        <li><span class="check">✓</span>Everything in Base, plus:</li>
+        <li><span class="check">✓</span>Reservation modification</li>
+        <li><span class="check">✓</span>Automated waitlist system</li>
+        <li><span class="check">✓</span>Priority monitoring</li>
+        <li><span class="check">✓</span>Workflow optimization</li>
+        <li><span class="check">✓</span>Basic analytics reporting</li>
+        <li><span class="check">✓</span>Priority technical support</li>
+      </ul>
+    </div>
+
+    <!-- Premium -->
+    <div class="plan">
+      <div class="plan-name">Premium</div>
+      <div class="plan-tagline">High-volume restaurants</div>
+
+      <div class="setup-row">
+        <span class="setup-label">Setup</span>
+        <span class="setup-amount">$1,119</span>
+      </div>
+      <div class="setup-note">one-time · paid before deployment</div>
+
+      <div class="monthly-price">
+        <div class="price-main">
+          <span class="currency">$</span>
+          <span class="amount">249</span>
+          <span class="per-mo">/mo</span>
+        </div>
+        <div class="calls-limit">Unlimited call handling</div>
+      </div>
+
+      <div class="features-title">What's included</div>
+      <ul class="feature-list">
+        <li><span class="check">✓</span>Everything in Growth, plus:</li>
+        <li><span class="check">✓</span>Custom AI voice & personality</li>
+        <li><span class="check">✓</span>Advanced analytics dashboard</li>
+        <li><span class="check">✓</span>Multi-location support</li>
+        <li><span class="check">✓</span>Dedicated onboarding session</li>
+        <li><span class="check">✓</span>Priority technical support</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Client-Borne Costs -->
+  <div class="client-costs">
+    <div class="cc-header">
+      <div class="cc-icon">⚠️</div>
+      <div>
+        <div class="cc-title">Additional costs paid directly by you to third-party providers</div>
+        <div class="cc-subtitle">These are infrastructure costs billed by external companies — not included in our monthly fee. You pay them directly.</div>
+      </div>
+    </div>
+
+    <div class="cc-grid">
+      <div class="cc-item">
+        <div class="cc-provider">Voice AI</div>
+        <div class="cc-name">Vapi</div>
+        <div class="cc-purpose">Handles all phone calls, voice AI interaction, and speech recognition (Deepgram included)</div>
+        <div class="cc-price">$0.05 – $0.12 / min</div>
+      </div>
+      <div class="cc-item">
+        <div class="cc-provider">AI Processing</div>
+        <div class="cc-name">OpenAI</div>
+        <div class="cc-purpose">Powers conversation understanding and intelligent response generation</div>
+        <div class="cc-price">$5 – $30 / month</div>
+      </div>
+      <div class="cc-item">
+        <div class="cc-provider">Server Hosting</div>
+        <div class="cc-name">Cloud Server</div>
+        <div class="cc-purpose">Hosts the automation workflow and APIs that run the reservation system</div>
+        <div class="cc-price">$5 – $15 / month</div>
+      </div>
+    </div>
+
+    <!-- Cost Summary Row -->
+    <div class="cost-summary">
+      <div class="cs-item cs-min">
+        <div class="cs-label">Minimum estimate</div>
+        <div class="cs-value">$10<span class="cs-mo">/mo</span></div>
+        <div class="cs-desc">Low-volume usage · ~100 calls/mo</div>
+      </div>
+      <div class="cs-divider"></div>
+      <div class="cs-item cs-avg">
+        <div class="cs-label">Typical estimate</div>
+        <div class="cs-value">$28<span class="cs-mo">/mo</span></div>
+        <div class="cs-desc">Medium usage · ~300–400 calls/mo</div>
+      </div>
+      <div class="cs-divider"></div>
+      <div class="cs-item cs-max">
+        <div class="cs-label">Maximum estimate</div>
+        <div class="cs-value">$50<span class="cs-mo">/mo</span></div>
+        <div class="cs-desc">High-volume · 700+ calls/mo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calculator -->
+  <div class="calc-box">
+    <div class="calc-header">
+      <div class="calc-icon">🧮</div>
+      <div>
+        <div class="calc-title">Monthly Cost Calculator</div>
+        <div class="calc-subtitle">Select your plan and estimated call volume to see your full monthly cost</div>
+      </div>
+    </div>
+
+    <div class="calc-body">
+      <!-- Inputs -->
+      <div class="calc-inputs">
+
+        <div class="calc-field">
+          <label class="calc-label">Your plan</label>
+          <div class="plan-selector">
+            <button class="ps-btn" data-plan="base" onclick="selectPlan('base')">Base</button>
+            <button class="ps-btn active" data-plan="growth" onclick="selectPlan('growth')">Growth</button>
+            <button class="ps-btn" data-plan="premium" onclick="selectPlan('premium')">Premium</button>
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label">Calls per month: <strong id="call-display">400</strong></label>
+          <input type="range" id="call-slider" min="50" max="900" step="50" value="400"
+            oninput="updateCalc()" class="calc-slider">
+          <div class="slider-labels"><span>50</span><span>900+</span></div>
+        </div>
+
+        <div class="calc-field">
+          <label class="calc-label">Avg. call duration: <strong id="dur-display">2 min</strong></label>
+          <input type="range" id="dur-slider" min="1" max="5" step="0.5" value="2"
+            oninput="updateCalc()" class="calc-slider">
+          <div class="slider-labels"><span>1 min</span><span>5 min</span></div>
+        </div>
+
+      </div>
+
+      <!-- Results -->
+      <div class="calc-results">
+        <div class="result-row">
+          <span class="result-label">Our monthly service fee</span>
+          <span class="result-val" id="r-monthly">$192</span>
+        </div>
+        <div class="result-row">
+          <span class="result-label">Vapi voice (calls × duration × rate)</span>
+          <span class="result-val" id="r-vapi">$32</span>
+        </div>
+        <div class="result-row">
+          <span class="result-label">OpenAI processing (est.)</span>
+          <span class="result-val" id="r-openai">$15</span>
+        </div>
+        <div class="result-row">
+          <span class="result-label">Server hosting</span>
+          <span class="result-val">$10</span>
+        </div>
+        <div class="result-divider"></div>
+        <div class="result-row result-total">
+          <span class="result-label">Total monthly cost</span>
+          <span class="result-val" id="r-total">$259</span>
+        </div>
+        <div class="result-row result-setup">
+          <span class="result-label">One-time setup fee</span>
+          <span class="result-val" id="r-setup">$749</span>
+        </div>
+        <div class="result-note" id="r-note">Growth plan · 400 calls/mo · 2 min avg</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  /* Cost Summary */
+  .cost-summary {
+    display: flex;
+    align-items: center;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #eceae4;
+    gap: 0;
+  }
+  .cs-item {
+    flex: 1;
+    text-align: center;
+    padding: 16px 12px;
+    border-radius: 10px;
+  }
+  .cs-min  { background: #F0FFF4; }
+  .cs-avg  { background: #FFF8F0; }
+  .cs-max  { background: #FFF0F0; }
+  .cs-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .cs-min  .cs-label { color: #16a34a; }
+  .cs-avg  .cs-label { color: #d97706; }
+  .cs-max  .cs-label { color: #dc2626; }
+  .cs-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .cs-min  .cs-value { color: #15803d; }
+  .cs-avg  .cs-value { color: #b45309; }
+  .cs-max  .cs-value { color: #b91c1c; }
+  .cs-mo {
+    font-size: 13px;
+    font-weight: 400;
+    opacity: 0.6;
+  }
+  .cs-desc { font-size: 11px; color: #888; }
+  .cs-divider {
+    width: 1px;
+    height: 60px;
+    background: #eceae4;
+    margin: 0 8px;
+  }
+
+  /* Calculator */
+  .calc-box {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #e8e6e0;
+    padding: 28px 32px;
+    margin-top: 16px;
+  }
+  .calc-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .calc-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: #EEF2FF;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .calc-title { font-size: 14px; font-weight: 700; color: #111; margin-bottom: 2px; }
+  .calc-subtitle { font-size: 12px; color: #888; }
+
+  .calc-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .calc-inputs { display: flex; flex-direction: column; gap: 22px; }
+  .calc-field { display: flex; flex-direction: column; gap: 8px; }
+  .calc-label { font-size: 12px; font-weight: 600; color: #555; }
+  .calc-label strong { color: #111; }
+
+  .plan-selector { display: flex; gap: 6px; }
+  .ps-btn {
+    flex: 1;
+    padding: 8px 0;
+    border-radius: 8px;
+    border: 1.5px solid #e0ddd8;
+    background: #F9F8F5;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #888;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .ps-btn:hover { border-color: #bbb; color: #444; }
+  .ps-btn.active { background: #111; border-color: #111; color: #fff; }
+
+  .calc-slider {
+    width: 100%;
+    accent-color: #111;
+    cursor: pointer;
+  }
+  .slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #aaa;
+    font-weight: 500;
+  }
+
+  /* Results */
+  .calc-results {
+    background: #F9F8F5;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #eceae4;
+  }
+  .result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 0;
+    font-size: 13px;
+  }
+  .result-label { color: #666; }
+  .result-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: #111;
+  }
+  .result-divider {
+    border: none;
+    border-top: 1px solid #e0ddd8;
+    margin: 8px 0;
+  }
+  .result-total .result-label {
+    font-weight: 700;
+    color: #111;
+    font-size: 14px;
+  }
+  .result-total .result-val {
+    font-size: 22px;
+    color: #111;
+    font-weight: 500;
+  }
+  .result-setup {
+    padding-top: 4px;
+  }
+  .result-setup .result-label { font-size: 11px; color: #aaa; }
+  .result-setup .result-val   { font-size: 11px; color: #aaa; font-family: 'DM Mono', monospace; }
+  .result-note {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #aaa;
+    text-align: center;
+    font-style: italic;
+  }
+</style>
+
+<script>
+  const plans = {
+    base:    { monthly: 119, setup: 549,  name: 'Base' },
+    growth:  { monthly: 192, setup: 749,  name: 'Growth' },
+    premium: { monthly: 249, setup: 1119, name: 'Premium' }
+  };
+  let currentPlan = 'growth';
+
+  function selectPlan(p) {
+    currentPlan = p;
+    document.querySelectorAll('.ps-btn').forEach(b => b.classList.toggle('active', b.dataset.plan === p));
+    updateCalc();
+  }
+
+  function updateCalc() {
+    const calls = parseFloat(document.getElementById('call-slider').value);
+    const dur   = parseFloat(document.getElementById('dur-slider').value);
+    const plan  = plans[currentPlan];
+
+    document.getElementById('call-display').textContent = calls >= 900 ? '900+' : calls;
+    document.getElementById('dur-display').textContent  = dur + ' min';
+
+    const vapiMin  = calls * dur * 0.05;
+    const vapiMax  = calls * dur * 0.12;
+    const vapiMid  = Math.round((vapiMin + vapiMax) / 2);
+
+    const openaiEst = calls <= 200 ? 8 : calls <= 500 ? 15 : 25;
+    const hosting   = 10;
+
+    const infra = vapiMid + openaiEst + hosting;
+    const total = plan.monthly + infra;
+
+    document.getElementById('r-monthly').textContent  = '$' + plan.monthly;
+    document.getElementById('r-vapi').textContent     = '~$' + vapiMid;
+    document.getElementById('r-openai').textContent   = '~$' + openaiEst;
+    document.getElementById('r-total').textContent    = '$' + total;
+    document.getElementById('r-setup').textContent    = '$' + plan.setup + ' (one-time)';
+    document.getElementById('r-note').textContent     =
+      plan.name + ' plan · ' + (calls >= 900 ? '900+' : calls) + ' calls/mo · ' + dur + ' min avg';
+  }
+
+  updateCalc();
+</script>
+</body>
+</html>
